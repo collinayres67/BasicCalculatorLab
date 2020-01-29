@@ -6,19 +6,44 @@ namespace BasicCalculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("*** BASIC CALCULATOR ***");
+            Console.WriteLine("*** BASIC WEATHER CALCULATOR ***");
 
-            Console.WriteLine("Enter TemperatureNumber");
+            // declare variables
+            string input;
+            int temp;
+            int relhumidity;
+            int dewpoint;
+            int windspeed;
 
-            // int.Parse will take a string data type and convert it to an int data type
-            int TemperatureNumber = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter RelativeHumidityNumber");
-            int RelativeHumidityNumber = int.Parse(Console.ReadLine());
+            // ASK FOR TEMP 
+            Console.WriteLine("Enter a temp");
+            input = Console.ReadLine();
+            temp = int.Parse(input);
 
-            int sum = TemperatureNumber-((100-RelativeHumidityNumber)/5);
 
-            Console.WriteLine("The answer is " + sum);
+            // ASK FOR REL HUMIDITY
+            Console.WriteLine("Enter RH");
+            input = Console.ReadLine();
+            relhumidity = int.Parse(input);
+            //CALCULATE THE DEW POINT
+            dewpoint = temp - 9 * (100 - relhumidity) / 25;
+            //  PRINT DEW POINT
+            Console.WriteLine("Dew point = " + dewpoint);
+            // ask for windspeed
+            Console.WriteLine("Enter windspeed");
+            input = Console.ReadLine();
+            windspeed = int.Parse(input);
+            // calculate wind chill
+            double windChill = 35.74
+                + (0.6125 * temp)
+                - 35.75 * Math.Pow(windspeed, 0.16)
+                + 0.4275 * temp * Math.Pow(windspeed, 0.16);
+
+
+
+            // print wind chill 
+            Console.WriteLine("The wind chill is " + windChill);
         }
     }
 }
